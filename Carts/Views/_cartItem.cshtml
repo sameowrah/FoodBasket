@@ -1,0 +1,118 @@
+﻿<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Online Food Ordering Basket</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {font-family: "Times New Roman", Georgia, Serif;}
+        h1,h2,h3,h4,h5,h6 
+        {
+            font-family: "Playfair Display";
+            letter-spacing: 5px;
+        }
+        style type="text/css">
+        .modal-header 
+        {
+            color: #0099CC;
+        }
+        .close 
+        {
+            background-color: #E7FBFE;
+        }
+        .auto-style1 
+        {
+            text-align: justify;
+        }
+        #myModalLabel {
+            background-color: #FFE0C1;
+        }
+        .auto-style3 {
+            color: #000000;
+            background-color: #000000;
+        }
+        .auto-style6 {
+            width: 96px;
+            height: 60px;
+        }
+        .auto-style7 {
+            background-color: #FFD6C1;
+        }
+        .auto-style8 {
+            background-color: #FFF2EC;
+        }
+    </style>
+</head>
+<body style="background-color: #FFFFFF">
+    @model Carts.models.item>
+ 
+<!-- Navbar (sit on top) -->
+<div class="modal-dialog">
+  <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+                <span class="sr-only">Close</span>
+            </button>
+            <h4 class="auto-style3" id="myModalLabel">
+                Food basket
+            </h4>
+        </div>
+        <div class="modal-body">
+            <table id="cartList" class="auto-style8">
+                <thead>
+                    <tr>
+                        <td class="auto-style1"><b>Image</b></td>
+                        <td class="auto-style1"><b>Name</b></td>
+                        <td class="auto-style1"><b>Description</b></td>
+                        <td class="auto-style1"><b>Price</b></td>
+                        <td class="auto-style1"><b>Quantity</b></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var objItem in Model)
+                    {
+
+                        <tr id="@objItem.Id">
+                            <td class="auto-style1">
+                                <img src="../Content/Images/Items/bread.png" class="auto-style6" />
+                            </td>
+                            <td>
+                                @objItem.Name
+                            </td>
+                            <td>
+                                @objItem.Price
+                            </td>
+                            <td>
+                                @objItem.Quantity
+
+                            </td>
+                            <td>
+                                <span class="cartDel">Remove</span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+            <span class="totalPrice">Total Amount @ViewBag.Total</span>
+        </div>
+        <span class="totalPrice">
+        <div class="auto-style1">
+            <button type="button" class="auto-style7" data-dismiss="modal">
+                Close</button>
+            <span class="totalPrice">
+            <button type="button" class="auto-style7">
+                Proceed&nbsp;
+            </button>
+            </span>
+        </div>
+        </span>
+    </div>
+</div>
+    <p>
+        &nbsp;</p>
+    </html>

@@ -1,0 +1,28 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+body {font-family: "Times New Roman", Georgia, Serif;}
+h1,h2,h3,h4,h5,h6 {
+    font-family: "Playfair Display";
+    letter-spacing: 5px;
+}
+    .auto-style1 {
+        position: fixed;
+        width: 100%;
+        z-index: 1;
+        top: 0;
+        bottom: 344px;
+    }
+    .auto-style2 {
+        width: 500px;
+        height: 750px;
+    }
+</style>@{
+    ViewBag.Title = "Error";
+}
+
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">An error occurred while processing your request.</h2>
+

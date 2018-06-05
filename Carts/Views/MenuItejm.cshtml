@@ -1,0 +1,91 @@
+﻿
+<body>
+<title>Menu</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+ <--{font-family: "Times New Roman", Georgia, Serif;}
+h1,h2,h3,h4,h5,h6 {
+    font-family: "Playfair Display";
+    letter-spacing: 5px;
+}
+    .auto-style3 {
+        width: 82px;
+        height: 68px;
+    }
+    .auto-style4 {
+        width: 68px;
+        height: 58px;
+    }
+    .auto-style5 {
+        width: 68px;
+        height: 65px;
+    }
+    .auto-style6 {
+        width: 75px;
+        height: 50px;
+    }
+    .auto-style7 {
+        width: 65px;
+        height: 63px;
+    }
+    .auto-style8 {
+        width: 76px;
+        height: 51px;
+    }
+    .auto-style9 {
+        width: 97px;
+        height: 82px;
+        margin-right: 0px;
+    }
+    .auto-style10 {
+        width: 99px;
+        height: 73px;
+    }
+    .auto-style11 {
+        width: 92px;
+        height: 80px;
+    }
+    .auto-style12 {
+        width: 116px;
+        height: 82px;
+    }
+    .auto-style13 {
+        width: 90px;
+        height: 73px;
+    }
+</style>
+
+    @model IEnumerable<Carts.Models.MenuItem>
+
+<ul id="accordion">
+	<li><div>Starters</div>
+		<ul>
+			<li><a href="#">Salad</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <img alt="" class="auto-style3" src="../Content/Images/saladpng.png" /></li>
+            <li><a href="#">Sandwich</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <img alt="" class="auto-style4" src="../Content/Images/Items/sandwich.png" /></li>
+
+		</ul>
+	</li>
+	<li><div>Main Meal</div>
+		<ul>
+			<li><a href="#">Chicken</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; </li><img src="../Content/Images/Items/chicken.png" class="auto-style7" />
+			<li><a href="#">Pizza</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </li><img src="../Content/Images/Items/pizza.png" class="auto-style6" />
+			<li><a href="#">Burger</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; </li><img src="../Content/Images/Items/burger.png" class="auto-style5" />
+		</ul>
+	</li>
+	<li><div>Bakery & Dessert</div>
+		<ul>
+			<li><a href="#">Bread</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="../Content/Images/Items/bread.png" class="auto-style8" />
+			<li><a href="#">Ice cream</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="../Content/Images/Items/icecream.png" class="auto-style9" />
+			<li><a href="#">Cake</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </li> &nbsp;<img src="../Content/Images/Items/cake.png" class="auto-style13" />
+		</ul>
+	</li>
+    <li><div>Beverages</div>
+		<ul>
+			<li><a href="#">Coffee</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </li> &nbsp;<img src="../Content/Images/Items/coffee.png" class="auto-style10" />
+			<li><a href="#">Tea</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </li> &nbsp;<img src="../Content/Images/Items/tea.png" class="auto-style11" />
+			<li><a href="#">Soft drinks</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </li> &nbsp;<img src="../Content/Images/Items/softdrinks.png" class="auto-style12" />
+	</li>
+</ul>

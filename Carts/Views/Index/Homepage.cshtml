@@ -1,0 +1,176 @@
+﻿<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Online Food Ordering Basket</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {font-family: "Times New Roman", Georgia, Serif;}
+        h1,h2,h3,h4,h5,h6 
+        {
+            font-family: "Playfair Display";
+            letter-spacing: 5px;
+        }
+        style type="text/css">
+        .modal-header 
+        {
+            color: #0099CC;
+        }
+        .close 
+        {
+            background-color: #E7FBFE;
+        }
+        .auto-style1 
+        {
+            text-align: justify;
+        }
+        #myModalLabel {
+            background-color: #FFE0C1;
+        }
+        .auto-style3 {
+            color: #000000;
+            background-color: #000000;
+        }
+        .auto-style6 {
+            width: 96px;
+            height: 60px;
+        }
+        .auto-style7 {
+            background-color: #FFD6C1;
+        }
+        .auto-style8 {
+            background-color: #FFF2EC;
+        }
+    </style>
+</head>
+<body style="background-color: #FFFFFF">
+    @model Carts.models.item>
+ 
+<!-- Navbar (sit on top) -->
+<div class="modal-dialog">
+  <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+      @model Carts.Models.Users
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Homepage</h2>
+@if (Model != null)
+{
+    <span> Welcome @Model.FirstName</span>
+    <p class="lnkAction">@Html.ActionLink("Logout", "login")</p>
+}
+
+<script src="../../Scripts/jquery-2.1.1.js" type="text/javascript"></script>
+<script src="~/Scripts/bootstrap-modal.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="../../Content/Style.css" rel="stylesheet" type="text/css" />
+
+<script>
+    $(document).ready(function ()
+    {
+        $('.divAddCart').on('click', function ()
+        {
+            var getItemId = parseInt($(this).closest('td').prop('id'));
+            var getUserName = $('.divName').html();
+            $.ajax(
+                {
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                url: 'Home/AddCart',
+                data: "{ 'itemId':' " + getItemId + "' }",
+                success: function (data)
+                {
+                    $('#spnCart').html(data)
+                },
+                error: function (data)
+                {
+                    alert(data);
+                }
+            });
+        });
+
+        $('#spnCart').on('click', function ()
+        {
+            var getName = $('.divName').html();
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                url: '/Home/GetCartItems',
+
+                success: function (data)
+                {
+                    $('#exampleModal').html(data);
+                    $('#exampleModal').modal({
+                        backdrop: false
+                    });
+                },
+                error: function (data)
+                {
+                    alert(data);
+                }
+            });
+        });
+
+        $(document).delegate('.cartDel', 'click', function ()
+        {
+            var DeleteItem = parseInt($(this).closest('tr').prop('id'));
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                url: '/Home/DeleteCart',
+                data: "{ 'itemId':' " + DeleteItem + "' }",
+                success: function (data)
+                {
+                    $('#exampleModal').html(data);
+                    $('#spnCart').html($(data).find('#cartList tbody tr').length);
+                    $('#exampleModal').modal({
+                        backdrop: false
+                    });
+                },
+                error: function (data)
+                {                
+                    alert(data);
+                }
+            });
+        });
+    });
+</script>
+<div class="top">
+    <div class="divName">@ViewBag.userName</div>
+    <div class="divCart">
+        Total Items In Cart : <span id="spnCart">@ViewBag.cartCount</span>
+    </div>
+    <div class="divLgout">
+        @Html.ActionLink("Logout", "Login")
+    </div>
+    <div class="container">
+        <table>
+            @foreach (var objItem in Model)
+            {
+                <tr>
+                    <td id="@objItem.Id">
+                        <div class="itemImage">
+                            <div class="divImg"> <img src="../../Content/Images/Items/chicken.png" /></div>
+                          
+                            <div class="divIName">@objItem.Name</div>
+                        </div>
+                        <div class="itemDetails">
+                            <div class="divDesc">@objItem.Description</div>
+                            <div class="divCat">Category : @objItem.Category</div>
+                            <div class="divPrice">Price : @objItem.Price</div>
+                            <div class="divOff">Off : @objItem.Offer %</div>
+                            <div class="divBuy">Buy</div>
+                            <div class="divAddCart">Add To Cart</div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<div class="modal" id="exampleModal" tabindex="1000" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+</div>

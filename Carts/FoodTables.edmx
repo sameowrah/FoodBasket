@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Food_OrderingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Food_Ordering.dbo.Tbl_Employee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Tbl_Employee">
+          <Key>
+            <PropertyRef Name="Emp_ID" />
+          </Key>
+          <Property Name="Emp_ID" Type="int" Nullable="false" />
+          <Property Name="FName" Type="varchar" MaxLength="50" />
+          <Property Name="LName" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_MenuCategory">
+          <Key>
+            <PropertyRef Name="MenuCatID" />
+          </Key>
+          <Property Name="MenuCatID" Type="int" Nullable="false" />
+          <Property Name="Cat_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Order_ID" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_MenuItem">
+          <Key>
+            <PropertyRef Name="MenuItemId" />
+          </Key>
+          <Property Name="MenuItemId" Type="int" Nullable="false" />
+          <Property Name="MenuCatID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="money" />
+          <Property Name="Order_ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Visible" Type="nchar" MaxLength="10" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Food_Ordering.dbo.Tbl_Order' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Tbl_Order">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Emp_ID" Type="nchar" MaxLength="10" />
+          <Property Name="MenuItem_ID" Type="nchar" MaxLength="10" />
+          <Property Name="Item_Price" Type="money" />
+          <Property Name="Order_Quantity" Type="int" />
+          <Property Name="Item_TotalPrice" Type="money" />
+        </EntityType>
+        <EntityContainer Name="Food_OrderingModelStoreContainer">
+          <EntitySet Name="Tbl_MenuCategory" EntityType="Self.Tbl_MenuCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_MenuItem" EntityType="Self.Tbl_MenuItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Employee" EntityType="Self.Tbl_Employee" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Tbl_Employee].[Emp_ID] AS [Emp_ID], 
+    [Tbl_Employee].[FName] AS [FName], 
+    [Tbl_Employee].[LName] AS [LName], 
+    [Tbl_Employee].[Email] AS [Email]
+    FROM [dbo].[Tbl_Employee] AS [Tbl_Employee]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Tbl_Order" EntityType="Self.Tbl_Order" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Tbl_Order].[Order_ID] AS [Order_ID], 
+    [Tbl_Order].[Emp_ID] AS [Emp_ID], 
+    [Tbl_Order].[MenuItem_ID] AS [MenuItem_ID], 
+    [Tbl_Order].[Item_Price] AS [Item_Price], 
+    [Tbl_Order].[Order_Quantity] AS [Order_Quantity], 
+    [Tbl_Order].[Item_TotalPrice] AS [Item_TotalPrice]
+    FROM [dbo].[Tbl_Order] AS [Tbl_Order]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Food_OrderingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Tbl_MenuCategory">
+          <Key>
+            <PropertyRef Name="MenuCatID" />
+          </Key>
+          <Property Name="MenuCatID" Type="Int32" Nullable="false" />
+          <Property Name="Cat_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Order_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Tbl_MenuItem">
+          <Key>
+            <PropertyRef Name="MenuItemId" />
+          </Key>
+          <Property Name="MenuItemId" Type="Int32" Nullable="false" />
+          <Property Name="MenuCatID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Order_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Visible" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Tbl_Employee">
+          <Key>
+            <PropertyRef Name="Emp_ID" />
+          </Key>
+          <Property Name="Emp_ID" Type="Int32" Nullable="false" />
+          <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Tbl_Order">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Emp_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MenuItem_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Item_Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Order_Quantity" Type="Int32" />
+          <Property Name="Item_TotalPrice" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityContainer Name="Food_OrderingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tbl_MenuCategory" EntityType="Self.Tbl_MenuCategory" />
+          <EntitySet Name="Tbl_MenuItem" EntityType="Self.Tbl_MenuItem" />
+          <EntitySet Name="Tbl_Employee" EntityType="Self.Tbl_Employee" />
+          <EntitySet Name="Tbl_Order" EntityType="Self.Tbl_Order" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Food_OrderingModelStoreContainer" CdmEntityContainer="Food_OrderingEntities">
+          <EntitySetMapping Name="Tbl_MenuCategory">
+            <EntityTypeMapping TypeName="Food_OrderingModel.Tbl_MenuCategory">
+              <MappingFragment StoreEntitySet="Tbl_MenuCategory">
+                <ScalarProperty Name="MenuCatID" ColumnName="MenuCatID" />
+                <ScalarProperty Name="Cat_Name" ColumnName="Cat_Name" />
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_MenuItem">
+            <EntityTypeMapping TypeName="Food_OrderingModel.Tbl_MenuItem">
+              <MappingFragment StoreEntitySet="Tbl_MenuItem">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MenuItemId" ColumnName="MenuItemId" />
+                <ScalarProperty Name="MenuCatID" ColumnName="MenuCatID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="Visible" ColumnName="Visible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Employee">
+            <EntityTypeMapping TypeName="Food_OrderingModel.Tbl_Employee">
+              <MappingFragment StoreEntitySet="Tbl_Employee">
+                <ScalarProperty Name="Emp_ID" ColumnName="Emp_ID" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Order">
+            <EntityTypeMapping TypeName="Food_OrderingModel.Tbl_Order">
+              <MappingFragment StoreEntitySet="Tbl_Order">
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="Emp_ID" ColumnName="Emp_ID" />
+                <ScalarProperty Name="MenuItem_ID" ColumnName="MenuItem_ID" />
+                <ScalarProperty Name="Item_Price" ColumnName="Item_Price" />
+                <ScalarProperty Name="Order_Quantity" ColumnName="Order_Quantity" />
+                <ScalarProperty Name="Item_TotalPrice" ColumnName="Item_TotalPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
